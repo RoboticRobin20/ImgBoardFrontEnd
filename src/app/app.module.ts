@@ -5,10 +5,12 @@ import { LikeModule } from './like/like.module';
 import { CommentModule } from './comment/comment.module';
 import { SecurityModule } from './security/security.module';
 import { SharedModule } from './shared/shared.module';
+import { SecurityInterceptor } from './security/security.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   exports: [
     ImageModule,
@@ -31,7 +34,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SecurityModule,
     SharedModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: SecurityInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

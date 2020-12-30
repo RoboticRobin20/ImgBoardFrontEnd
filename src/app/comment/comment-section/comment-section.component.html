@@ -1,1 +1,10 @@
-<p>comment-section works!</p>
+<form *ngIf='authenticated' (ngSubmit)='postComment(comment)'> 
+    <input type='text' name='comment' placeholder="Place your comment..." [(ngModel)]='comment.content'>
+    <button type='submit'>Submit</button>
+</form>
+<ul>
+    <!-- ASYNC -->
+    <li *ngFor='let c of (comments | async)'>
+        <p>{{ c.content }} {{ c.user.username}}</p>     
+    </li>
+</ul>

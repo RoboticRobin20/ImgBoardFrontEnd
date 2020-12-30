@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserLogin } from '../../models/user-login.model';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  submitted : boolean = false;
+  userLogin: UserLogin = new UserLogin('', '');
+  
+  constructor(private _authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  onSubmit(){
+    this._authenticationService.authenticate(this.userLogin).subscribe(result => {
+      localStorage.setItem("token", JSON.stringify(result));
+      this._authenticationService.setCurrentUser(this.userLogin.email);
+      this.router.navigate(['/images']);
+    });
+  }
 }
