@@ -8,13 +8,13 @@ import { UserLogin } from '../models/user-login.model';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  baseUrl: string = "http://192.168.99.100:8050";
+  baseUrl: string = "http://localhost:8050";
   token: Observable<string>;
   currentUser: Observable<User>;
   private currentUserSubject = new BehaviorSubject<any>(null);
   constructor(private http: HttpClient) { }
   authenticate(userLogin: UserLogin): Observable<string> {
-    this.token = this.http.post<string>(this.baseUrl + "/login", userLogin);
+    this.token = this.http.post<string>(this.baseUrl + "/login", {"email": userLogin.email, "password": userLogin.password});
     return this.token;
   }
 
@@ -23,8 +23,9 @@ export class AuthenticationService {
   }
 
   setCurrentUser(email: string) {
-    this.currentUser = this.http.get<User>(this.baseUrl + '/users/' + email);
-    localStorage.setItem('user', JSON.stringify(this.currentUser));
+    this.http.get<User>(this.baseUrl + '/user/' + email).subscribe(user =>{
+      localStorage.setItem('user', JSON.stringify(user));
+    });
   }
 
   getCurrentUser(): Observable<User>{

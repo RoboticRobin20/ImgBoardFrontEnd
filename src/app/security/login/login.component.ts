@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     this._authenticationService.authenticate(this.userLogin).subscribe(result => {
-      localStorage.setItem("token", JSON.stringify(result));
+      localStorage.setItem("token", JSON.parse(JSON.stringify(result)).token);
       this._authenticationService.setCurrentUser(this.userLogin.email);
       this.router.navigate(['/images']);
     });

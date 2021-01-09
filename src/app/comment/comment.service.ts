@@ -8,13 +8,13 @@ import { Comment } from '../models/comment.model';
 })
 export class CommentService {
 
-  baseUrl: string = "http://192.168.99.100:8050";
+  baseUrl: string = "http://localhost:8050/comments";
   constructor(private http: HttpClient) { }
   
   getCommentsByImage(imageKey: string): Observable<Comment[]>{
-    return this.http.get<Comment[]>(this.baseUrl + '/images/' + imageKey);
+    return this.http.get<Comment[]>(this.baseUrl + '/images/' + JSON.parse(localStorage.getItem('currentImage')).key);
   }
   postComment(comment: Comment){
-    return this.http.post<Comment>(this.baseUrl + '/comments', comment);
+    return this.http.post(this.baseUrl + "?userEmail=" + comment.userEmail + "&imageKey=" + comment.imageKey + "&title=" + comment.title + "&description=" + comment.description, "");
   }
 }

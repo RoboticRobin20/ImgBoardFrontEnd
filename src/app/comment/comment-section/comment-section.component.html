@@ -1,10 +1,11 @@
-<form *ngIf='authenticated' (ngSubmit)='postComment(comment)'> 
-    <input type='text' name='comment' placeholder="Place your comment..." [(ngModel)]='comment.content'>
+<form (ngSubmit)='postComment()'> 
+    <input type='text' name='comment' placeholder="Place your comment..." [(ngModel)]='comment.description'>
     <button type='submit'>Submit</button>
 </form>
 <ul>
     <!-- ASYNC -->
     <li *ngFor='let c of (comments | async)'>
-        <p>{{ c.content }} {{ c.user.username}}</p>     
+        <p>{{ c.userEmail }}</p>
+        <p>{{ c.description }}</p>     
     </li>
 </ul>

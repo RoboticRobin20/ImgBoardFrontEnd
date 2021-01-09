@@ -1,1 +1,11 @@
 <p>image-list works!</p>
+<div>
+    <table>
+      <!-- ASYNC -->
+      <tr *ngFor='let i of (images | async)'>
+        <td>{{ i.userEmail}}</td>
+        <td>{{ i.description }}</td>
+        <td><button (click)="onView(i)">View</button></td>
+      </tr>
+    </table>
+</div>

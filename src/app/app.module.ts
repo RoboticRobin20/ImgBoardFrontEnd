@@ -12,20 +12,22 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { FilePondModule } from 'ngx-filepond';
+
 @NgModule({
   declarations: [
     AppComponent,
-    ImageModule,
-    LikeModule,
-    CommentModule,
-    SecurityModule,
-    SharedModule
+    // ImageModule,
+    // LikeModule,
+    // CommentModule,
+    // SecurityModule
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    FilePondModule
   ],
   exports: [
     ImageModule,

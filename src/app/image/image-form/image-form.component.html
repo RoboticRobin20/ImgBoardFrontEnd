@@ -1,1 +1,16 @@
-<p>image-form works!</p>
+<form (ngSubmit)='onSubmit(image)' action="" method="post" enctype="multipart/form-data">
+    <img src="{{ image.source }}">
+    <label for='description'>Description</label>
+    <input type='text' placeholder='Enter Description' [(ngModel)]='image.description' name='description' value='image.description'>
+    <label for='source'>Source</label>
+    <input type='text' placeholder='Enter Source' [(ngModel)]='image.source' name='source' value='image.source'>
+    <button type="submit">Submit</button>
+</form>
+<!-- <file-pond #myPond 
+    [options]="pondOptions" 
+    [files]="pondFiles"  
+    (oninit)="pondHandleInit()"
+    (onaddfile)="pondHandleAddFile($event)"
+    (onactivatefile)="pondHandleActivateFile($event)"> 
+</file-pond>-->
+
