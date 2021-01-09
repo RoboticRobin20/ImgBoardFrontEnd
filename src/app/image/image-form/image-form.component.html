@@ -1,5 +1,5 @@
 <form (ngSubmit)='onSubmit(image)' action="" method="post" enctype="multipart/form-data">
-    <img src="{{ image.source }}">
+    <img src="{{ image.source }}" style="width: 500px; height: 400px;"><br>
     <label for='description'>Description</label>
     <input type='text' placeholder='Enter Description' [(ngModel)]='image.description' name='description' value='image.description'>
     <label for='source'>Source</label>

@@ -23,7 +23,7 @@ export class ImageFormComponent implements OnInit {
   add(image: Image){
     console.log(image);
     this._imageService.postImage(image).subscribe(result => {
-      this.router.navigate(['Images']);
+      this.router.navigate(['images']);
     });
   }
   onSubmit(image: Image){

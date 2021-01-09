@@ -17,7 +17,6 @@ export class ImageService {
 
   postImage(image: Image){
     console.log(this.baseUrl + "?userEmail=" + image.userEmail + "&source=" + image.source + "&description=" + image.description);
-    return this.http.post(this.baseUrl + "?userEmail=" + image.userEmail + "&source=" + image.source + "&description=" + image.description, {
-      headers: new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"))});
+    return this.http.post(this.baseUrl + "?userEmail=" + image.userEmail + "&source=" + image.source + "&description=" + image.description, "");
   }
 }
